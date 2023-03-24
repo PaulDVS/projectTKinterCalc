@@ -13,9 +13,19 @@ e = 2.718281
 
 def addString(string):
     global calculatorString
+
+    checkList = ["+", "-", "*", "/", "**", "%"]
+    if(string in checkList):
+        if (calculatorString == ""):
+            addPrev()
+
     newString = calculatorString[:len(calculatorString)-bracket] + string + calculatorString[len(calculatorString)-bracket:]
     calculatorString = newString
     outputString()
+
+def addPrev():
+    global calculatorString
+    calculatorString= str(answerNum)
 
 def openBracket():
     global bracket
@@ -56,12 +66,19 @@ def backSpace():
 
 def factorialButton():
     global calculatorString
+
+    if (calculatorString == ""):
+        addPrev()
+
     newString = "factorial("+calculatorString +")"
     calculatorString = newString
     calcInput()
 
 def logButton(logNum):
     global calculatorString
+
+    if(calculatorString == ""):
+        addPrev()
 
     if(logNum == "e"):
         newString = "log(" + calculatorString + ", e)"
